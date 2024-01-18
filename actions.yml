@@ -1,0 +1,21 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - run: echo " Inicio build docker" 
+      - uses: actions/checkout@v2
+
+      - uses: docker/build-push-action@v2
+        with:
+          context: .
+          dockerfile: Dockerfile
+          tags:
+            - my-image:latest
